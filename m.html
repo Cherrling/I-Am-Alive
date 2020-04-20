@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=768px"/>
+    <title>I Am Alive-Mobile</title>
+    <link href="game.ico" rel="shortcut icon">
+    <script src="module.js"></script>
+    <script src="auto.js"></script>
+    <script src="action.js"></script>
+    <script src="md5.js"></script>
+    <link rel="stylesheet" href="m.css" id="css">
+</head>
+<body>
+    <div id="cover"></div>
+    <div id="message"></div>
+    <div id="messa"></div>
+    <div id="messb"></div>
+    <div id="toloadin">
+        在这里填入您的存档
+        <br>
+        <textarea name="" id="tanchuin" style="width: 80%;height: 50%;"></textarea>
+        <br>
+        <button class="button on" onclick="loadin(1)">确认</button>
+        <button class="button on" onclick="loadin()">取消</button>
+
+    </div>
+    <div id="toloadout">
+        请保存以下字符作为存档
+        <br>
+        <textarea name="" id="tanchuout" style="width: 80%;height: 50%;"></textarea>
+        <br>
+        <button class="button on" onclick="outsubmit()">确认</button>
+    </div>
+    <div id="tanchuchongzhi">
+        您确定重置游戏吗
+        <br>
+        <button class="button on" onclick="chongzhi(1)" style="
+        position: absolute;top: 50%;left: 15%;">确定</button>
+
+        <button class="button on" onclick="chongzhi()" style="
+        position: absolute;top: 50%;right: 15%;">取消</button>
+    </div>
+    <div id="tanchuguize">
+        石镐会增加石头掉落数量,减少挖掘时间<br>
+        石斧会增加木头/棕榈叶掉落数量<br>
+        石矛会增加生肉/兽皮掉落几率和数量<br>
+        工坊建成后可以提高烤肉成功率<br>
+        工坊可以增加制作绳子的成功概率和数量<br>
+        工具可以增加掉落概率并增加额外掉落概率<br>
+        饱食度过低行动会扣除血量<br>
+        游戏内无即死事件请放心游玩<br>
+        <br>
+        <button class="button on" onclick="tanchuguize(0)">确定</button>
+    </div>
+    <div id="hint">
+        <h2>公告</h2>
+        页面自动识别有误？<br><br>
+        <button class="button on" onclick="jumpurl('pc')" style="width: auto;">前往电脑端</button>
+        <button class="button on" onclick="jumpurl('index')">前往首页</button>
+        <br><br>
+        <button class="button on" onclick="jumpurl('record')">更新日志</button>
+        <button class="button on" onclick="tanchuguize(1)">游戏规则</button>
+        <h1>版本内测，随时更新，存档随时有可能失效</h1>
+    </div>
+
+
+
+    <div id="jianzhu"><!--建筑物-->
+        <div id="jianzhuwu" style="width: 100%; height: 5%;">建筑物</div>
+        <div id="buildings">
+            <button id="qianwanggongfang" class="button on qianwang"
+            onclick="qianwanggongfang()">前往工坊</button>
+            <br>
+            <button id="qianwangnongchang" class="button on qianwang"
+            onclick="qianwangnongchang()">前往农场</button>
+        </div>
+    </div>
+    <div id="jianzhuxingdong"><!--建筑物内行动-->
+        <div id="zhizao" style="width: 100%; height: 5%;position: absolute;top: 0;">制造</div>
+        <div style="width: 100%;height: 94%;position: absolute;top: 6%;overflow: auto;">
+            <div id="gongfang" style="width: 100%;display: none;">
+                <button id="jianzaogongfang" class="button on" onclick="jianzaogongfang()"
+                style="transition-duration: 0.3s; max-width: 95%;margin-top: 5px;width: 100px;height: 98px;">建造工坊</button>
+                <span2 id="gspan">石头 25 <br>木头 45 <br>绳子 10 <br>兽皮 3 <br>饱食度 20</span2>
+                <br>
+                <button id="kaomianbao_" class="button off  g"onclick="kaomianbao_()"
+                style="height: 78px;">烤面包</button>
+                <span2>小麦 2 <br>木头 2 <br>饱食度 -3 <br>10s</span2>
+                <br>
+                <button id="kaorou_" class="button off  g"onclick="kaorou_()"
+                style="height: 78px;">烤肉</button>
+                <span2>生肉 1 <br>木头 2 <br>饱食度 -1 <br>6s</span2>
+                <br>
+                <button id="zhizuoshengzi_" class="button off  g"onclick="zhizuoshengzi_()"
+                style="height: 58px;">制作绳子 </button>
+                <span2> 棕榈叶 2 <br>饱食度 -1 <br>3s</span2>
+                <br>
+                <button id="zhizuoshigao_" class="button off  g"onclick="zhizuoshigao_()"
+                style="height: 138px;">制作石镐</button>
+                <span2>石头 10 <br>木头 3 <br>绳子 2 <br>饱食度 -4 <br>12s<br>使用次数 +40</span2>
+                <br>
+                <button id="zhizuoshimao_" class="button off  g"onclick="zhizuoshimao_()"
+                style="height: 138px;">制作石矛</button>
+                <span2>石头 5 <br>木头 4 <br>绳子 1 <br>饱食度 -2 <br>9s<br>使用次数 +30</span2>
+                <br>
+                <button id="zhizuoshifu_" class="button off  g"onclick="zhizuoshifu_()"
+                style="height: 138px;">制作石斧</button>
+                <span2>石头 6 <br>木头 3 <br>绳子 3 <br>饱食度 -3 <br>10s<br>使用次数 +40</span2>
+                <br>
+                <button id="zhizuoshichu_" class="button off  g"onclick="zhizuoshichu_()"
+                style="height: 138px;">制作石锄</button>
+                <span2>石头 1 <br>木头 2 <br>绳子 1 <br>饱食度 -1 <br>8s<br>使用次数 +20</span2>
+            </div>
+            <div id="nongchang" style="width: 100%;display:none;">
+                <button id="zhongtian_" class="button on n" onclick="zhongtian_()"
+                style="height: 58px;">种田</button>
+                <span2>种子 3 <br>饱食度 -7 <br>60s</span2>
+            </div>
+        </div>
+        
+    </div>
+    
+
+
+
+    
+    <div id="right"><!--右侧状态栏-->
+        <div style="width: 100%; height: 3%; text-align: center;overflow: hidden;">持有物品</div>
+        <div id="load">
+            木头:<div id="log" class="things"></div><br>
+            石头:<div id="stone" class="things"></div><br>
+            棕榈叶:<div id="leaf" class="things"></div><br>
+            生肉:<div id="meat" class="things"></div><br>
+            熟肉:<div id="cooked_meat" class="things"></div><br>
+            绳子:<div id="rope" class="things"></div><br>
+            种子:<div id="seed" class="things"></div><br>
+            小麦:<div id="wheat" class="things"></div><br>
+            面包:<div id="bread" class="things"></div><br>
+            兽皮:<div id="hide" class="things"></div><br>
+            皮革:<div id="leather" class="things"></div><br>
+            草药:<div id="medicine" class="things"></div><br>
+            石矛剩余<br>次数:<div id="stone_knife" class="things"></div><br>
+            石镐剩余<br>次数:<div id="stone_pickaxe" class="things"></div><br>
+            石锄剩余<br>次数:<div id="stone_hoe" class="things"></div><br>
+            石斧剩余<br>次数:<div id="stone_axe" class="things"></div><br>
+        </div>
+        <div id="zhuangtai" style="border-top-style: solid;border-color: cornsilk;
+        text-align: center;height: 3%;overflow: hidden;">状态</div>
+        <div id="condition">
+            生命值：<div id="health" class="conditions"></div><br>
+            饱食度：<div id="hunger" class="conditions"></div><br>
+        </div>
+        <div id="system"><!--存档的导入导出-->
+            <button onclick="tanchuin()"class="button on sys">导入存档</button>
+            <br>
+            <button onclick="tanchuout()"class="button on sys">导出存档</button>
+            <br>
+            <button onclick="tanchuchongzhi()"class="button on sys">重置游戏</button>
+            <br>
+            <button onclick="save()"class="button on sys">存 档</button>
+        </div>
+    </div>
+
+
+    <div id="bottom"><!--徒手行动-->
+        <button id="kanshu" class="button on t" onclick="kanshu()"
+        style="height: 40px;">砍 树</button>
+        <span2>饱食度 -5 <br> 6s</span2>
+        <br>
+        <button id="caijishitou" class="button on t" onclick="caijishitou()"
+        style="height: 40px;">采集石头</button>
+        <span2>饱食度 -10 <br>8s/6s</span2>
+        <br>
+        <button id="caijizhiwu" class="button on t" onclick="caijizhiwu()"
+        style="height: 40px;">采集植物</button>
+        <span2>饱食度 -3 <br>3s</span2>
+        <br>
+        <button id="dalie" class="button on t"onclick="dalie()"
+        style="height: 40px;">打猎</button>
+        <span2>饱食度 -7 <br>10s</span2>
+        <br>
+        <button id="zhizuoshengzi" class="button on t"onclick="zhizuoshengzi()"
+        style="height: 58px;">制作绳子</button>
+        <span2>棕榈叶 2 <br>饱食度 -1 <br>3s</span2>
+        <br>
+        <button id="kaorou" class="button on t"onclick="kaorou()"
+        style="height: 78px;">烤肉</button>
+        <span2>生肉 1 <br>木头 2 <br>饱食度 -1 <br>6s</span2>
+        <br>
+        <button id="shiyongshengrou" class="button on t"onclick="shiyongshengrou()"
+        style="height: 78px;">食用生肉</button>
+        <span2>生肉 1 <br>饱食度 +10 <br>概率扣血<br>4s</span2>
+        <br>
+        <button id="shiyongshurou" class="button on t"onclick="shiyongshurou()"
+        style="height: 58px;">食用熟肉</button>
+        <span2>熟肉 1<br>饱食度 +40 <br>3s</span2>
+        <br>
+        <button id="shiyongmianbao" class="button on t"onclick="shiyongmianbao()"
+        style="height: 58px;">食用面包</button>
+        <span2>面包 1 <br>饱食度 +30 <br>2s</span2>
+        <br>
+        <button id="shiyongcaoyao" class="button on t"onclick="shiyongcaoyao()"
+        style="height: 78px;">食用草药</button>
+        <span2>草药 1 <br>概率回血/扣血<br>5s</span2>
+        <br>
+        </div>
+    <script>
+        open_load()
+    </script>
+</body>
+</html>

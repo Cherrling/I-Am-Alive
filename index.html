@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=768px">
+    <link href="game.ico" rel="shortcut icon">
+    <script src="md5.js"></script>
+    <script src="module.js"></script>
+    <script src="index.js"></script>
+    <link rel="stylesheet" href="index.css">
+    <title>I Am Alive-Hi!</title>
+</head>
+<body>
+    <div id="cover"></div>
+    <div id="toloadin">
+        <h2>在这里填入您的存档</h2>
+        <br>
+        <textarea id="tanchuin" ></textarea>
+        <br>
+        <button class="button in" onclick="load()">确定</button>
+    </div>
+    <div id="author">
+        <h3>这是Clef和Cherrling共同设计的第一款游戏</h3><br>
+        部分设计取自《小黑屋》<br>
+        策划：Clef <br>
+        开发：Cherrling <br>
+        测试:Clef,Salt_lovely,冰寻 <br>
+        技术指导：Salt_lovely <br>
+        <br>
+        <button class="button in" onclick="author(0)">确定</button>
+    </div>
+    <h1 style="text-align: center; font-size: 60px;">I Am Alive</h1>
+    <button class="button" onclick="start()">开始游戏</button>
+    <br>
+    <button class="button" onclick="loadin()">导入存档</button>
+    <br>
+    <button class="button" onclick="author(1)">作者的话</button>
+    <br>
+    <button class="button" onclick="github()">Gitee</button>
+    <br>
+    <button class="button" onclick="record()">开发日志</button>
+</body>
+</html>
