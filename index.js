@@ -54,8 +54,12 @@ function loadin() {
     document.getElementById('toloadin').style.top = '30%'
 }
 
-function github() {
+function gitee() {
     window.open('https://gitee.com/cherrling/I-Am-Alive')
+}
+
+function github() {
+    window.open('https://github.com/Cherrling/cherrling.github.io')
 }
 
 function author(a) {
